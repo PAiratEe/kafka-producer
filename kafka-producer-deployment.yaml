@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-producer-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka-producer-app
+  template:
+    metadata:
+      labels:
+        app: kafka-producer-app
+    spec:
+      containers:
+        - name: kafka-producer-app
+          image: pairate/kafka-producer-app:0.0.1
+          imagePullPolicy: Always
+          command:
+            - "/bin/bash"
+            - "-c"
+            - "java -jar kafka-producer-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev"
