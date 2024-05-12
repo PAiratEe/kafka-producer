@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: kafka-producer-metrics
+  namespace: default
+  labels:
+    release: kube-prometheus-stack
+spec:
+  selector:
+    matchLabels:
+      app: kafka-producer-app
+  endpoints:
+    - port: metrics
+      path: "/actuator/prometheus/"
+
+
+
+
